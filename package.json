@@ -1,0 +1,10 @@
+{
+  "name": "bot-amigo-inivisible",
+  "version": "1.0.0",
+  "description": "Bot de amigo invisible para telegram",
+  "main": "index.js",
+  "repository": "https://github.com/borjalan/bot-amigo-invisible.git",
+  "author": "Borja Landaburu borjalamda@gmail.com",
+  "license": "MIT",
+  "private": false
+}
