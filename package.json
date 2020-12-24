@@ -6,5 +6,19 @@
   "repository": "https://github.com/borjalan/bot-amigo-invisible.git",
   "author": "Borja Landaburu borjalamda@gmail.com",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@types/node": "^7.0.5",
+    "chalk": "^4.1.0",
+    "node-fetch": "^2.6.1",
+    "telegram-bot-api": "^2.0.1"
+  },
+  "scripts": {
+    "build": "tsc -p ./src",
+    "start": "yarn run build && node build/index.js",
+    "start:last": "node build/index.js"
+  }
 }
