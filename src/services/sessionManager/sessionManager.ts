@@ -23,7 +23,7 @@ export const getSession = async (group_id: string): Promise<Session> => {
         id_grupo: group_id,
         state: 'not_initiated',
         personas: numPersonas,
-        personal_status: new Map(),
+        personal_status: [],
       };
       fs.appendFileSync(file, JSON.stringify(session, null, 2));
     }
@@ -36,5 +36,6 @@ export const getSession = async (group_id: string): Promise<Session> => {
 
 export const setSession = (session: Session): void => {
   const file = path.join(SESSION_PATH, 'session' + session.id_grupo + '.json');
+  console.log(session);
   fs.writeFileSync(file, JSON.stringify(session, null, 2));
 };
