@@ -2,8 +2,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { Session } from './sessionManager.d';
-import { getChatMembersCount } from '../telegramApi/getters';
-import { logRedBg } from '../customConsole/customConsole';
+import { getChatMembersCount } from '../../api/apiCalls';
+import { logError } from '../customConsole/customConsole';
 
 const SESSION_PATH = path.join(__dirname, '..', '..', 'sessions/');
 
@@ -21,15 +21,20 @@ export const getSession = async (group_id: string): Promise<Session> => {
       const numPersonas: Number = await getChatMembersCount(group_id);
       session = {
         id_grupo: group_id,
-        state: 'awaiting_start',
+        state: 'not_initiated',
         personas: numPersonas,
         personal_status: new Map(),
       };
-      fs.appendFileSync(file, JSON.stringify(session));
+      fs.appendFileSync(file, JSON.stringify(session, null, 2));
     }
   } catch (err) {
-    logRedBg(err);
+    logError(err);
     return undefined;
   }
   return session;
+};
+
+export const setSession = (session: Session): void => {
+  const file = path.join(SESSION_PATH, 'session' + session.id_grupo + '.json');
+  fs.writeFileSync(file, JSON.stringify(session, null, 2));
 };

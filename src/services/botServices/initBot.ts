@@ -1,4 +1,6 @@
-import { logBlue, logGreen, logGreenBg } from '../customConsole/customConsole';
+import { EVENT_API_INITIATED } from '../../constants/events';
+import { logEvent } from '../customConsole/customConsole';
+import { handleEvents } from '../eventManager/eventManager';
 import { getSession } from '../sessionManager/sessionManager';
 
 export const setMsgProvider = (amigoBot, mp) => {
@@ -7,18 +9,17 @@ export const setMsgProvider = (amigoBot, mp) => {
   amigoBot
     .start()
     .then(() => {
-      logGreenBg('API is started');
+      logEvent(EVENT_API_INITIATED);
     })
     .catch(console.error);
 };
 
-export const mainThread = amigoBot => {
+export const mainThread = (amigoBot, mode: string) => {
   // Receive messages via event callback
   amigoBot.on('update', update => {
     const message = update.message;
-    logBlue('Mensaje Recibido\n' + JSON.stringify(message, null, 2));
     getSession(message.chat.id).then(session => {
-      logGreen(JSON.stringify(session, null, 2));
+      handleEvents(amigoBot, message, session, mode);
     });
   });
 };

@@ -14,11 +14,13 @@
     "@types/node": "^7.0.5",
     "chalk": "^4.1.0",
     "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
     "telegram-bot-api": "^2.0.1"
   },
   "scripts": {
     "build": "tsc -p ./src",
     "start": "yarn run build && node build/index.js",
+    "start:nodemon": "nodemon",
     "start:last": "node build/index.js"
   }
 }
