@@ -110,15 +110,15 @@ export const handleEvents = async (message: any, session: Session, mode: String)
               user.user_id,
               EVENT_CHAT_TARGET_USER + '@' + target.user.username
             );
-            sendChatMessage(session.id_grupo, EVENT_CHAT_USERS_DEALED);
-            session.personal_status = [];
-            session.state = 'not_initiated';
-            setSession(session);
-            if (mode === VERBOSE) {
-              logSessionChanged(session);
-            }
-            logEvent(EVENT_FINISH_SESSION);
           });
+          sendChatMessage(session.id_grupo, EVENT_CHAT_USERS_DEALED);
+          session.personal_status = [];
+          session.state = 'not_initiated';
+          setSession(session);
+          if (mode === VERBOSE) {
+            logSessionChanged(session);
+          }
+          logEvent(EVENT_FINISH_SESSION);
         } else {
           sendChatMessage(session.id_grupo, EVENT_CHAT_NOT_ENOUGH_USERS);
           ignore(mode);
