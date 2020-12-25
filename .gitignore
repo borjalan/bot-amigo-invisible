@@ -2,7 +2,7 @@
 node_modules
 
 # Secret constants
-./constants/secrets.js
+src/constants/secrets.ts
 
 # build files
 build
