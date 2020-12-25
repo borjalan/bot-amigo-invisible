@@ -19,7 +19,7 @@ export const mainThread = (amigoBot, mode: string) => {
   amigoBot.on('update', update => {
     const message = update.message;
     getSession(message.chat.id).then(session => {
-      handleEvents(amigoBot, message, session, mode);
+      handleEvents(message, session, mode);
     });
   });
 };
