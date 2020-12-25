@@ -106,8 +106,6 @@ export const handleEvents = async (message: any, session: Session, mode: String)
           session.personal_status.forEach(async (user, index, users) => {
             const targetIndex = (index + 1) % users.length;
             const target = await getChatMember(session.id_grupo, users[targetIndex].user_id);
-            console.log(target.user.username);
-            console.log(user.user_id);
             await sendChatMessage(
               user.user_id,
               EVENT_CHAT_TARGET_USER + '@' + target.user.username
